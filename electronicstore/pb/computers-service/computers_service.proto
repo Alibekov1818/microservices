@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "./";
+
+service ComputersService {
+  rpc GetComputer(ComputerId) returns (Computer) {}
+  rpc GetComputers(GetComputersRequest) returns (ComputerList) {}
+  rpc CreateComputer(Computer) returns (Computer) {}
+  rpc DeleteComputer(ComputerId) returns (Computer) {}
+  rpc UpdateComputer(Computer) returns (Computer) {}
+}
+
+
+message GetComputersRequest {}
+
+message ComputerList {
+  repeated Computer list = 1;
+}
+
+message Computer {
+  int64 id = 1;
+  string model = 2;
+  string cpu = 3;
+  string memory = 4;
+  int64 price = 5;
+}
+
+message ComputerId {
+  int64 id = 1;
+}

@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  token:
+    build:
+      context: ./token_service
+      dockerfile: token.Dockerfile
+    ports:
+      - "8010:8001"
+  phones:
+    build:
+      context: ./phones_service
+      dockerfile: phones.Dockerfile
+    ports:
+      - "8002:8002"
+  computers:
+    build:
+      context: ./computers_service
+      dockerfile: computers.Dockerfile
+    ports:
+      - "8003:8003"
+  electronic_store:
+    build:
+      context: ./electronicstore
+      dockerfile: store.Dockerfile
+    ports:
+      - "8000:8000"
+    depends_on:
+      - token
+      - phones
+      - computers

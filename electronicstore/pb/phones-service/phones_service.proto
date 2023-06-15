@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package auth;
+
+option go_package = "./";
+
+service PhonesService {
+  rpc GetPhone(PhoneId) returns (Phone) {}
+  rpc GetPhones(GetPhonesRequest) returns (PhoneList) {}
+  rpc CreatePhone(Phone) returns (Phone) {}
+  rpc DeletePhone(PhoneId) returns (Phone) {}
+  rpc UpdatePhone(Phone) returns (Phone) {}
+}
+
+
+message GetPhonesRequest {}
+
+message PhoneList {
+  repeated Phone list = 1;
+}
+
+message Phone {
+  int64 id = 1;
+  string model = 2;
+  string brand = 3;
+  int64 year = 4;
+  int64 price = 5;
+}
+
+message PhoneId {
+  int64 id = 1;
+}
